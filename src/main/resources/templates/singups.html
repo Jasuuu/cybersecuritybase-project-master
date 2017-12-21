@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Admin page</title>
+    </head>
+    <body>
+
+        <h1>People signed up for the event so far!</h1>
+        <table>
+            <tr>
+                <td><b>Name</b></td>
+                <td><b>Address</b></td>
+            </tr>
+            <tr th:each="item : ${list}">
+                <td th:text="${item.getName()}"></td>
+                <td th:text="${item.getAddress()}"></td>
+                <td>
+                    <form method="GET" action="/admin/delete">
+                        <input name="name" type="hidden" th:value="${item.getName()}" />
+                        <input name="address" type="hidden" th:value="${item.getAddress()}" />
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
